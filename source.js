@@ -25,14 +25,14 @@
                 this.y = y || this.y;
                 this.draw(this.stroke);
                 return (this);
-            }
+            };
             //
             rect.prototype.highlight = function (x, y) {
                 this.x = x || this.x;
                 this.y = y || this.y;
                 this.draw("orange");
                 return (this);
-            }
+            };
             //
             rect.prototype.draw = function (stroke) {
                 ctx.save();
@@ -44,11 +44,11 @@
                 ctx.stroke();
                 ctx.fill();
                 ctx.restore();
-            }
+            };
             //
             rect.prototype.isPointInside = function (x, y) {
                 return (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height);
-            }
+            };
 
 
             return rect;
