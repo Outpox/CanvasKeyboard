@@ -3,14 +3,19 @@
 	var ctx = keyboard.getContext("2d");
 
 	//var line1 = {};
-	var test = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]"];
+	var qwer = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]"];
+	var asdf = ["A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "ENTER"];
 
 	var kb = new Keyboard(keyboard, ctx);
 	var line1 = new Line(kb, 10, 10, 45, 0);
+	var line2 = new Line(kb, 10, 60, 45, 0);
 	//var key1 = new Key(line1, 10, 10, 40, 40);
 
-	for (var i = 0; i < test.length; i++) {
-		new Key(line1, 10 + line1.spaceX * i, 10 + i * line1.spaceY, 40, 40, test[i]);
+	for (var i = 0; i < qwer.length; i++) {
+		new Key(line1, 10 + line1.spaceX * i, 10 + i * line1.spaceY, 40, 40, qwer[i]);
+	}
+	for (var j = 0; j < asdf.length; j++) {
+		new Key(line2, 10 + line2.spaceX * j, 10 + j * line2.spaceY, 40, 40, asdf[j]);
 	}
 
 	keyboard.addEventListener("click", function (e) {
