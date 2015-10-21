@@ -1,7 +1,7 @@
 var idKeyCount = 0;
 
 function Key(line, startX, startY, lengthX, lengthY, content, type, data) {
-    this.id = idLineCount++;
+    this.id = idKeyCount++;
     this.startX = startX;
     this.startY = startY;
     this.lengthX = lengthX;

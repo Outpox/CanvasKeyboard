@@ -1,0 +1,263 @@
+{
+  "description": "UK ISO keyboard",
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/KB_United_Kingdom.svg/800px-KB_United_Kingdom.svg.png",
+  "rows": [
+    {
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 45,
+      "spaceY": 0,
+      "keys": [
+        {
+          "content": "`"
+        },
+        {
+          "content": "1"
+        },
+        {
+          "content": "2"
+        },
+        {
+          "content": "3"
+        },
+        {
+          "content": "4"
+        },
+        {
+          "content": "5"
+        },
+        {
+          "content": "6"
+        },
+        {
+          "content": "7"
+        },
+        {
+          "content": "8"
+        },
+        {
+          "content": "9"
+        },
+        {
+          "content": "0"
+        },
+        {
+          "content": "-"
+        },
+        {
+          "content": "="
+        },
+        {
+          "content": "Backspace",
+          "type": "backspace"
+        }
+      ]
+    },
+    {
+      "startX": 10,
+      "startY": 20,
+      "spaceX": 45,
+      "spaceY": 0,
+      "keys": [
+        {
+          "content": "tab"
+        },
+        {
+          "content": "q"
+        },
+        {
+          "content": "w"
+        },
+        {
+          "content": "e"
+        },
+        {
+          "content": "r"
+        },
+        {
+          "content": "t"
+        },
+        {
+          "content": "y"
+        },
+        {
+          "content": "u"
+        },
+        {
+          "content": "i"
+        },
+        {
+          "content": "o"
+        },
+        {
+          "content": "p"
+        },
+        {
+          "content": "["
+        },
+        {
+          "content": "]"
+        },
+        {
+          "content": "Enter",
+          "type": "Enter"
+        }
+      ]
+    },
+    {
+      "startX": 10,
+      "startY": 30,
+      "spaceX": 45,
+      "spaceY": 0,
+      "keys": [
+        {
+          "content": "capslock"
+        },
+        {
+          "value": "a",
+          "content": "a"
+        },
+        {
+          "value": "s",
+          "content": "s"
+        },
+        {
+          "value": "d",
+          "content": "d"
+        },
+        {
+          "value": "f",
+          "content": "f"
+        },
+        {
+          "value": "g",
+          "content": "g"
+        },
+        {
+          "value": "h",
+          "content": "h"
+        },
+        {
+          "value": "j",
+          "content": "j"
+        },
+        {
+          "value": "k",
+          "content": "k"
+        },
+        {
+          "value": "l",
+          "content": "l"
+        },
+        {
+          "value": ";",
+          "content": ";"
+        },
+        {
+          "value": "'",
+          "content": "'"
+        },
+        {
+          "class": "bigcol",
+          "value": "enter",
+          "content": "enter"
+        }
+      ]
+    },
+    {
+      "startX": 10,
+      "startY": 40,
+      "spaceX": 45,
+      "spaceY": 0,
+      "keys": [
+        {
+          "content": "shift"
+        },
+        {
+          "value": "z",
+          "content": "z"
+        },
+        {
+          "value": "x",
+          "content": "x"
+        },
+        {
+          "value": "c",
+          "content": "c"
+        },
+        {
+          "value": "v",
+          "content": "v"
+        },
+        {
+          "value": "b",
+          "content": "b"
+        },
+        {
+          "value": "n",
+          "content": "n"
+        },
+        {
+          "value": "m",
+          "content": "m"
+        },
+        {
+          "value": ",",
+          "content": ","
+        },
+        {
+          "value": ".",
+          "content": "."
+        },
+        {
+          "value": "/",
+          "content": "/"
+        },
+        {
+          "class": "bigcol",
+          "value": "shift",
+          "content": "shift"
+        }
+      ]
+    },
+    {
+      "startX": 10,
+      "startY": 50,
+      "spaceX": 45,
+      "spaceY": 0,
+      "keys": [
+        {
+          "value": "ctrl",
+          "content": "ctrl"
+        },
+        {
+          "class": "empty",
+          "value": "",
+          "content": ""
+        },
+        {
+          "value": "alt",
+          "content": "alt"
+        },
+        {
+          "class": "bigcol",
+          "value": "space",
+          "content": "space"
+        },
+        {
+          "value": "alt",
+          "content": "alt"
+        },
+        {
+          "class": "empty",
+          "value": "",
+          "content": ""
+        },
+        {
+          "value": "ctrl",
+          "content": "ctrl"
+        }
+      ]
+    }
+  ]
+}
