@@ -5,8 +5,8 @@
     {
       "startX": 10,
       "startY": 10,
-      "spaceX": 45,
-      "spaceY": 0,
+      "spaceX": 10,
+      "spaceY": 10,
       "keys": [
         {
           "content": "`"
@@ -56,7 +56,7 @@
     {
       "startX": 10,
       "startY": 20,
-      "spaceX": 45,
+      "spaceX": 10,
       "spaceY": 0,
       "keys": [
         {
@@ -107,7 +107,7 @@
     {
       "startX": 10,
       "startY": 30,
-      "spaceX": 45,
+      "spaceX": 10,
       "spaceY": 0,
       "keys": [
         {
@@ -167,7 +167,7 @@
     {
       "startX": 10,
       "startY": 40,
-      "spaceX": 45,
+      "spaceX": 10,
       "spaceY": 0,
       "keys": [
         {
@@ -223,7 +223,7 @@
     {
       "startX": 10,
       "startY": 50,
-      "spaceX": 45,
+      "spaceX": 10,
       "spaceY": 0,
       "keys": [
         {
