@@ -16,7 +16,8 @@ var ctx = keyboard.getContext("2d");
 //    new Key(line2, line2.startX + line2.spaceX * j, line2.startY + j * line2.spaceY, 40, 40, asdf[j]);
 //}
 
-var kb = new Keyboard(keyboard, ctx, {});
+var options = {fontColor: "limegreen"};
+var kb = new Keyboard(keyboard, ctx, options);
 kb.init();
 
 //ctx.beginPath();
