@@ -1,5 +1,15 @@
 var idLineCount = 0;
 
+/**
+ * The Line constructor.
+ * @param keyboard
+ * @param startX
+ * @param startY
+ * @param spaceX
+ * @param spaceY
+ * @param keys
+ * @constructor
+ */
 function Line(keyboard, startX, startY, spaceX, spaceY, keys) {
     this.id = idLineCount++;
     this.context = keyboard.context;
@@ -12,10 +22,17 @@ function Line(keyboard, startX, startY, spaceX, spaceY, keys) {
     keyboard.pushLine(this);
 }
 
+/**
+ * Shortcut for the Key class in order to add itself to the current Line.
+ * @param Key
+ */
 Line.prototype.pushKey = function (Key) {
     this.keys.push(Key);
 };
 
+/**
+ * Was used for debug. Display the Line starting point.
+ */
 Line.prototype.dot = function () {
     this.context.beginPath();
     this.context.strokeStyle = "red";

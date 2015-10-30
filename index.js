@@ -1,7 +1,7 @@
 var keyboard = document.getElementById("keyboard");
 var ctx = keyboard.getContext("2d");
 
-var options = {"fontColor": "red"};
+var options = {"fontColor": "limegreen"};
 var kb = new Keyboard(keyboard, ctx, options);
 kb.init();
 

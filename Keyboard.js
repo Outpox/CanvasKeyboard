@@ -1,9 +1,19 @@
 var idKeyboardCount = 0;
 
+/**
+ * The "master" class. You should only interact with this one.
+ *
+ * @param canvas - The <canvas> html element.
+ * @param context - The context of the canvas (.getContext("2d")).
+ * @param options - An object of settings for the keyboard.
+ * @param debug - Boolean value.
+ * @param lines - The object containing the lines. Might be removed from the constructor parameter.
+ * @constructor
+ */
 function Keyboard(canvas, context, options, debug, lines) {
     var bounds = canvas.getBoundingClientRect();
     this.id = idKeyboardCount++;
-    this.layout = options.layout || "templates/qwerty_uk.json";
+    this.layout = options.layout || "qwerty_uk.json";
     this.canvas = canvas;
     this.context = context;
     this.offsetX = bounds.left || 0;
@@ -17,11 +27,28 @@ function Keyboard(canvas, context, options, debug, lines) {
     this.lines = lines || [];
     this.selectedKey = {};
 }
+/**
+ * The options object accept the following properties:
+ *
+ * layout | The layout name of the json file (without "templates/") | default: "qwerty_uk.json"
+ * backGroundColor | The keyboard background color | default: "black"
+ * keyColor | The keys border color | default: "gray"
+ * fontColor | The keys font color | default: "gray"
+ * fontType | The keys text font and size | default: "25px Calibri"
+ */
 
+/**
+ * A shortcut for the line class to add itself to the keyboard list of lines.
+ * @param Line
+ */
 Keyboard.prototype.pushLine = function (Line) {
     this.lines.push(Line);
 };
 
+/**
+ * The function which handles the click event of a key.
+ * @param e
+ */
 Keyboard.prototype.handleMouseDown = function (e) {
     document.getElementById("x").innerText = parseInt(e.clientX).toString();
     document.getElementById("y").innerText = parseInt(e.clientY).toString();
@@ -40,6 +67,10 @@ Keyboard.prototype.handleMouseDown = function (e) {
     }
 };
 
+/**
+ * The function which handle the hover event of a key.
+ * @param e
+ */
 Keyboard.prototype.handleMouseHover = function (e) {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for (var i = 0; i < this.lines.length; i++) {
@@ -62,11 +93,14 @@ Keyboard.prototype.handleMouseHover = function (e) {
     }
 };
 
+/**
+ * This initialize the keyboard.
+ */
 Keyboard.prototype.init = function () {
     var layout = {};
     var thisKeyboard = this;
 
-    loadJSON("keyboards/qwerty_uk.json", function (data) {
+    loadJSON("keyboards/" + thisKeyboard.layout, function (data) {
         layout = JSON.parse(data);
         var maxWidth = thisKeyboard.canvas.width;
         var maxHeight = thisKeyboard.canvas.height;
@@ -120,6 +154,11 @@ Keyboard.prototype.init = function () {
     });
 };
 
+/**
+ * I don't remember why I wrote this, but it seems to just resize the keyboard. Keeping for eventual later use.
+ * @param width - New canvas width.
+ * @param height - New canvas height.
+ */
 Keyboard.prototype.resizeCanvas = function (width, height) {
     this.canvas.width = width;
     this.canvas.height = height;
