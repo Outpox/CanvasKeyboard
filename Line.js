@@ -9,7 +9,7 @@ function Line(keyboard, startX, startY, spaceX, spaceY, keys) {
     this.spaceY = spaceY;
     this.keys = keys || [];
     this.keyboard = keyboard;
-    keyboard.pushLine();
+    keyboard.pushLine(this);
 }
 
 Line.prototype.pushKey = function (Key) {

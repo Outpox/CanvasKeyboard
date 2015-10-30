@@ -5,11 +5,11 @@
     {
       "startX": 10,
       "startY": 10,
-      "spaceX": 45,
-      "spaceY": 0,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "content": "`"
+          "content": "Esc"
         },
         {
           "content": "1"
@@ -48,19 +48,29 @@
           "content": "="
         },
         {
-          "content": "Backspace",
-          "type": "backspace"
+          "content": "Del"
+        },
+        {
+          "content": "Bkspc",
+          "type": "backspace",
+          "data": {
+            "widthFactor": 1.4
+          }
         }
       ]
     },
     {
       "startX": 10,
-      "startY": 20,
-      "spaceX": 45,
-      "spaceY": 0,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "content": "tab"
+          "content": "Tab",
+          "type": "tab",
+          "data": {
+            "widthFactor": 1.4
+          }
         },
         {
           "content": "q"
@@ -100,162 +110,186 @@
         },
         {
           "content": "Enter",
-          "type": "Enter"
+          "type": "enter",
+          "data": {
+            "widthFactor": 2.1
+          }
         }
       ]
     },
     {
       "startX": 10,
-      "startY": 30,
-      "spaceX": 45,
-      "spaceY": 0,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "content": "capslock"
+          "content": "CapsL",
+          "type": "capslock",
+          "data": {
+            "widthFactor": 1.8
+          }
         },
         {
-          "value": "a",
           "content": "a"
         },
         {
-          "value": "s",
           "content": "s"
         },
         {
-          "value": "d",
           "content": "d"
         },
         {
-          "value": "f",
           "content": "f"
         },
         {
-          "value": "g",
           "content": "g"
         },
         {
-          "value": "h",
           "content": "h"
         },
         {
-          "value": "j",
           "content": "j"
         },
         {
-          "value": "k",
           "content": "k"
         },
         {
-          "value": "l",
           "content": "l"
         },
         {
-          "value": ";",
           "content": ";"
         },
         {
-          "value": "'",
           "content": "'"
         },
         {
-          "class": "bigcol",
-          "value": "enter",
-          "content": "enter"
+          "content": "#"
+        },
+        {
+          "content": "enter",
+          "type": "enter",
+          "data": {
+            "widthFactor": 1.7
+          }
         }
       ]
     },
     {
       "startX": 10,
-      "startY": 40,
-      "spaceX": 45,
-      "spaceY": 0,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "content": "shift"
+          "content": "Shift",
+          "type": "type",
+          "data": {
+            "widthFactor": 1.2
+          }
         },
         {
-          "value": "z",
+          "content": "\\"
+        },
+        {
           "content": "z"
         },
         {
-          "value": "x",
           "content": "x"
         },
         {
-          "value": "c",
           "content": "c"
         },
         {
-          "value": "v",
           "content": "v"
         },
         {
-          "value": "b",
           "content": "b"
         },
         {
-          "value": "n",
           "content": "n"
         },
         {
-          "value": "m",
           "content": "m"
         },
         {
-          "value": ",",
           "content": ","
         },
         {
-          "value": ".",
           "content": "."
         },
         {
-          "value": "/",
           "content": "/"
         },
         {
-          "class": "bigcol",
-          "value": "shift",
-          "content": "shift"
+          "content": "Shift",
+          "type": "bigcol",
+          "data": {
+            "widthFactor": 1.2
+          }
+        },
+        {
+          "content": "\u2191"
+        },
+        {
+          "content": "Ctrl",
+          "type": "ctrl",
+          "data": {
+            "widthFactor": 1
+          }
         }
       ]
     },
     {
       "startX": 10,
-      "startY": 50,
-      "spaceX": 45,
-      "spaceY": 0,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "value": "ctrl",
-          "content": "ctrl"
+          "content": "Ctrl",
+          "type": "ctrl",
+          "data": {
+            "widthFactor": 1.2
+          }
         },
         {
-          "class": "empty",
-          "value": "",
-          "content": ""
+          "content": "Fn"
         },
         {
-          "value": "alt",
-          "content": "alt"
+          "content": "Win"
         },
         {
-          "class": "bigcol",
-          "value": "space",
-          "content": "space"
+          "content": "Alt",
+          "type": "alt",
+          "data": {
+            "widthFactor": 1.4
+          }
         },
         {
-          "value": "alt",
-          "content": "alt"
+          "type": "space",
+          "content": "space",
+          "data": {
+            "widthFactor": 5.3
+          }
         },
         {
-          "class": "empty",
-          "value": "",
-          "content": ""
+          "content": "AltGr"
         },
         {
-          "value": "ctrl",
-          "content": "ctrl"
+          "content": "Fn"
+        },
+        {
+          "content": "Pn"
+        },
+        {
+          "content": "\u2190"
+        },
+        {
+          "content": "\u2193"
+        },
+        {
+          "content": "\u2192"
         }
       ]
     }

@@ -32,7 +32,7 @@ Keyboard.prototype.handleMouseDown = function (e) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
                 this.cursor.x = mouseX;
                 this.cursor.y = mouseY;
-                console.log(this.lines[i].keys[j].content);
+                if (this.debug) console.log(this.lines[i].keys[j].content);
                 this.selectedKey = this.lines[i].keys[j];
                 document.getElementById("selectedKey").innerText = this.selectedKey.content;
             }
@@ -49,7 +49,7 @@ Keyboard.prototype.handleMouseHover = function (e) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
                 if (mouseX !== this.cursor.x || mouseY !== this.cursor.y) {
                     this.lines[i].keys[j].hover();
-                    console.log(this.lines[i].keys[j].content);
+                    if (this.debug) console.log(this.lines[i].keys[j].content);
                 }
                 else {
                     this.lines[i].keys[j].reDraw();
@@ -72,9 +72,37 @@ Keyboard.prototype.init = function () {
             var line = new Line(thisKeyboard, layout.rows[i].startX, layout.rows[i].startY, layout.rows[i].spaceX, layout.rows[i].spaceY);
             console.group();
             console.log(line);
+
+            var lineOffsetX = 0;
+            var lineOffsetY = 0;
+
             for (var j = 0; j < layout.rows[i].keys.length; j++) {
                 var key = layout.rows[i].keys[j];
-                var createdKey = new Key(line, line.startX + j * line.spaceX, line.startY + i * line.spaceY, 40, 40, key.content, key.type || "standard");
+                var keyWidth = 40;
+                var keyHeight = 40;
+
+                var keyStartX = 0;
+                var keyStartY = 0;
+                if ((key.type || "standard") !== "standard") {
+                    switch (key.type) {
+                        default:
+                            keyStartX = line.startX + lineOffsetX + j * line.spaceX + j * keyWidth;
+                            keyStartY = line.startY + lineOffsetY + i * line.spaceY + i * keyHeight;
+
+                            lineOffsetX += (keyWidth * (key.data.widthFactor || 1)) - keyWidth;
+                            lineOffsetY += (keyHeight* (key.data.heightFactor || 1)) - keyHeight;
+
+                            keyWidth *= (key.data.widthFactor || 1);
+                            keyHeight *= (key.data.heightFactor || 1);
+                    }
+                }
+                else {
+                    keyStartX = line.startX + lineOffsetX + j * line.spaceX + j * keyWidth;
+                    keyStartY = line.startY + lineOffsetY + i * line.spaceY + i * keyHeight;
+                }
+
+                keyStartY = line.startY + i * line.spaceY + i * keyHeight;
+                var createdKey = new Key(line, keyStartX, keyStartY, keyWidth, keyHeight, key.content, key.type || "standard");
                 console.log(createdKey);
             }
             console.groupEnd();
