@@ -10,7 +10,7 @@ function Keyboard(canvas, context, options, debug, lines) {
     this.offsetY = bounds.top || 0;
     this.backGroundColor = options.backGroundColor || "black";
     this.keyColor = options.keyColor || "gray";
-    this.fontColor = options.fontColor || "lightpink";
+    this.fontColor = options.fontColor || "gray";
     this.fontType = options.fontType || "25px Calibri";
     this.debug = debug || false;
     this.cursor = {x: null, y: null};
@@ -68,7 +68,11 @@ Keyboard.prototype.init = function () {
 
     loadJSON("keyboards/qwerty_uk.json", function (data) {
         layout = JSON.parse(data);
+        var maxWidth = thisKeyboard.canvas.width;
+        var maxHeight = thisKeyboard.canvas.height;
         for (var i = 0; i < layout.rows.length; i++) {
+            var lineWidth = 0;
+            var lineHeight = 0;
             var line = new Line(thisKeyboard, layout.rows[i].startX, layout.rows[i].startY, layout.rows[i].spaceX, layout.rows[i].spaceY);
             console.group();
             console.log(line);
@@ -114,4 +118,10 @@ Keyboard.prototype.init = function () {
             thisKeyboard.handleMouseHover(e);
         });
     });
+};
+
+Keyboard.prototype.resizeCanvas = function (width, height) {
+    this.canvas.width = width;
+    this.canvas.height = height;
+    this.context = this.canvas.getContext("2d");
 };
