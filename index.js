@@ -1,9 +1,6 @@
-var keyboard = document.getElementById("keyboard");
-var ctx = keyboard.getContext("2d");
-
 var options = {};
-var kb = new Keyboard(keyboard, ctx, options, true);
-kb.init();
+
+new Keyboard(document.getElementById("keyboard"), options, true).init();
 
 //ctx.beginPath();
 //ctx.moveTo(550, 10);
