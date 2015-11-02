@@ -18,10 +18,6 @@ function Key(line, startX, startY, lengthX, lengthY, content, type, data) {
     this.startY = startY;
     this.lengthX = lengthX;
     this.lengthY = lengthY;
-    this.fillColor = line.keyboard.keyBackgroundColor;
-    this.strokeColor = line.keyboard.keyBorderColor;
-    this.strokeColorHover = line.keyboard.keyHoverBorderColor;
-    this.strokeWidth = 1;
     this.content = content || "";
     this.type = type || "standard";
     this.data = data || {};
@@ -69,10 +65,8 @@ Key.prototype.draw = function (strokeColor, hover) {
     ctx.beginPath();
     ctx.fillStyle = this.selected ? this.line.keyboard.keySelectedBackgroundColor : this.line.keyboard.keyBackgroundColor;
     ctx.strokeStyle = strokeColor || (this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
-    ctx.lineWidth = this.strokeWidth;
-    ctx.rect(this.startX, this.startY, this.lengthX, this.lengthY);
-    ctx.stroke();
-    ctx.fill();
+    ctx.lineWidth = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderWidth : this.line.keyboard.keyHoverBorderWidth) : (this.selected ? this.line.keyboard.keySelectedBorderWidth : this.line.keyboard.keyBorderWidth);;
+    ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, 1, true, true);
     ctx.font = hover ? (this.selected ? this.line.keyboard.keySelectedHoverFontType : this.line.keyboard.keyHoverFontType) : (this.selected ? this.line.keyboard.keySelectedFontType : this.line.keyboard.keyFontType);
     ctx.textAlign = "center";
     ctx.fillStyle = hover ? (this.selected ? this.line.keyboard.keySelectedHoverFontColor : this.line.keyboard.keyHoverFontColor) : (this.selected ? this.line.keyboard.keySelectedFontColor : this.line.keyboard.keyFontColor);
