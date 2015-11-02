@@ -18,14 +18,15 @@ function Key(line, startX, startY, lengthX, lengthY, content, type, data) {
     this.startY = startY;
     this.lengthX = lengthX;
     this.lengthY = lengthY;
-    this.fillColor = "black";
-    this.strokeColor = "grey";
-    this.strokeColorHover = "green";
+    this.fillColor = line.keyboard.keyBackgroundColor;
+    this.strokeColor = line.keyboard.keyBorderColor;
+    this.strokeColorHover = line.keyboard.keyHoverBorderColor;
     this.strokeWidth = 1;
     this.content = content || "";
     this.type = type || "standard";
     this.data = data || {};
     this.line = line;
+    this.selected = false;
     line.pushKey(this);
     this.draw();
 }
@@ -39,7 +40,7 @@ function Key(line, startX, startY, lengthX, lengthY, content, type, data) {
 Key.prototype.reDraw = function (x, y) {
     this.startX = x || this.startX;
     this.startY = y || this.startY;
-    this.draw(this.strokeColor);
+    this.draw(this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
     return (this);
 };
 
@@ -51,28 +52,30 @@ Key.prototype.reDraw = function (x, y) {
 Key.prototype.hover = function (x, y) {
     this.startX = x || this.startX;
     this.startY = y || this.startY;
-    this.draw(this.strokeColorHover);
+    this.draw(this.selected ? this.line.keyboard.keySelectedHoverBorderColor : this.line.keyboard.keyHoverBorderColor, true);
 };
 
 /**
  * Default drawing of a key.
  * @param strokeColor
+ * @param hover
  */
-Key.prototype.draw = function (strokeColor) {
+Key.prototype.draw = function (strokeColor, hover) {
+    hover = hover || false;
     var ctx = this.line.context;
     var textWidth = this.startX + (this.lengthX / 2);
     var textHeight = ctx.measureText("I").width + this.startY + (this.lengthY / 2);
     ctx.save();
     ctx.beginPath();
-    ctx.fillStyle = this.fillColor;
-    ctx.strokeStyle = strokeColor || this.strokeColor;
+    ctx.fillStyle = this.selected ? this.line.keyboard.keySelectedBackgroundColor : this.line.keyboard.keyBackgroundColor;
+    ctx.strokeStyle = strokeColor || (this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
     ctx.lineWidth = this.strokeWidth;
     ctx.rect(this.startX, this.startY, this.lengthX, this.lengthY);
     ctx.stroke();
     ctx.fill();
-    ctx.font = this.line.keyboard.fontType;
+    ctx.font = hover ? (this.selected ? this.line.keyboard.keySelectedHoverFontType : this.line.keyboard.keyHoverFontType) : (this.selected ? this.line.keyboard.keySelectedFontType : this.line.keyboard.keyFontType);
     ctx.textAlign = "center";
-    ctx.fillStyle = this.line.keyboard.fontColor;
+    ctx.fillStyle = hover ? (this.selected ? this.line.keyboard.keySelectedHoverFontColor : this.line.keyboard.keyHoverFontColor) : (this.selected ? this.line.keyboard.keySelectedFontColor : this.line.keyboard.keyFontColor);
     ctx.fillText(this.content, textWidth, textHeight);
     ctx.restore();
 };

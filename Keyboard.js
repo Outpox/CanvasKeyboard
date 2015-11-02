@@ -19,9 +19,31 @@ function Keyboard(canvas, context, options, debug, lines) {
     this.offsetX = bounds.left || 0;
     this.offsetY = bounds.top || 0;
     this.backGroundColor = options.backGroundColor || "black";
-    this.keyColor = options.keyColor || "gray";
-    this.fontColor = options.fontColor || "gray";
-    this.fontType = options.fontType || "25px Calibri";
+
+    //Unselected not hovered keys
+    this.keyBorderColor = options.keyBorderColor || "gray";
+    this.keyBackgroundColor = options.keyBackgroundColor || "black";
+    this.keyFontType = options.keyFontType || "25px Calibri";
+    this.keyFontColor = options.keyFontColor || "gray";
+
+    //Unselected hovered keys
+    this.keyHoverBorderColor = options.keyHoverBorderColor || "white";
+    this.keyHoverBackgroundColor = options.keyHoverBackgroundColor || "black";
+    this.keyHoverFontType = options.keyHoverFontType || options.keyFontType || "25px Calibri";
+    this.keyHoverFontColor = options.keyHoverFontColor || options.keyFontColor || "gray";
+
+    //Selected not hovered keys
+    this.keySelectedBorderColor = options.keySelectedBorderColor || "yellowgreen";
+    this.keySelectedBackgroundColor = options.keySelectedBackgroundColor || "black";
+    this.keySelectedFontType = options.keySelectedFontType || options.keyFontType || "25px Calibri";
+    this.keySelectedFontColor = options.keySelectedFontColor || options.keyFontColor || "gray";
+
+    //Selected hovered keys
+    this.keySelectedHoverBorderColor = options.keySelectedHoverBorderColor || "yellowgreen";
+    this.keySelectedHoverBackgroundColor = options.keySelectedHoverBackgroundColor || "black";
+    this.keySelectedHoverFontType = options.keySelectedHoverFontType || this.keySelectedFontType;
+    this.keySelectedHoverFontColor = options.keySelectedHoverFontColor || this.keySelectedFontColor;
+
     this.debug = debug || false;
     this.cursor = {x: null, y: null};
     this.lines = lines || [];
@@ -32,9 +54,9 @@ function Keyboard(canvas, context, options, debug, lines) {
  *
  * layout | The layout name of the json file (without "templates/") | default: "qwerty_uk.json"
  * backGroundColor | The keyboard background color | default: "black"
- * keyColor | The keys border color | default: "gray"
- * fontColor | The keys font color | default: "gray"
- * fontType | The keys text font and size | default: "25px Calibri"
+ * keyBorderColor | The keys border color | default: "gray"
+ * keyFontColor | The keys font color | default: "gray"
+ * keyFontType | The keys text font and size | default: "25px Calibri"
  */
 
 /**
@@ -60,7 +82,14 @@ Keyboard.prototype.handleMouseDown = function (e) {
                 this.cursor.x = mouseX;
                 this.cursor.y = mouseY;
                 if (this.debug) console.log(this.lines[i].keys[j].content);
-                this.selectedKey = this.lines[i].keys[j];
+                if (this.selectedKey === this.lines[i].keys[j]) {
+                    this.selectedKey.selected = false;
+                    this.selectedKey = {};
+                } else {
+                    this.selectedKey.selected = false;
+                    this.selectedKey = this.lines[i].keys[j];
+                    this.selectedKey.selected = true;
+                }
                 document.getElementById("selectedKey").innerText = this.selectedKey.content;
             }
         }
@@ -78,6 +107,7 @@ Keyboard.prototype.handleMouseHover = function (e) {
         var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY);
         for (var j = 0; j < this.lines[i].keys.length; j++) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
+                //Prevent the click event to be casted twice
                 if (mouseX !== this.cursor.x || mouseY !== this.cursor.y) {
                     this.lines[i].keys[j].hover();
                     if (this.debug) console.log(this.lines[i].keys[j].content);
@@ -108,8 +138,8 @@ Keyboard.prototype.init = function () {
             var lineWidth = 0;
             var lineHeight = 0;
             var line = new Line(thisKeyboard, layout.rows[i].startX, layout.rows[i].startY, layout.rows[i].spaceX, layout.rows[i].spaceY);
-            console.group();
-            console.log(line);
+            if (thisKeyboard.debug) console.group();
+            if (thisKeyboard.debug) console.log(line);
 
             var lineOffsetX = 0;
             var lineOffsetY = 0;
@@ -141,9 +171,9 @@ Keyboard.prototype.init = function () {
 
                 keyStartY = line.startY + i * line.spaceY + i * keyHeight;
                 var createdKey = new Key(line, keyStartX, keyStartY, keyWidth, keyHeight, key.content, key.type || "standard");
-                console.log(createdKey);
+                if (thisKeyboard.debug) console.log(createdKey);
             }
-            console.groupEnd();
+            if (thisKeyboard.debug) console.groupEnd();
         }
         thisKeyboard.canvas.addEventListener("click", function (e) {
             thisKeyboard.handleMouseDown(e);
