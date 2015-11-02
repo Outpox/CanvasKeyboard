@@ -22,6 +22,7 @@ function Keyboard(canvas, options, debug, lines) {
     //Unselected not hovered keys
     this.keyBorderColor = options.keyBorderColor || "gray";
     this.keyBorderWidth = options.keyBorderWidth || 1;
+    this.keyBorderRadius = options.keyBorderRadius || 1;
     this.keyBackgroundColor = options.keyBackgroundColor || "black";
     this.keyFontType = options.keyFontType || "25px Calibri";
     this.keyFontColor = options.keyFontColor || "gray";
@@ -29,21 +30,24 @@ function Keyboard(canvas, options, debug, lines) {
     //Unselected hovered keys
     this.keyHoverBorderColor = options.keyHoverBorderColor || "white";
     this.keyHoverBorderWidth = options.keyHoverBorderWidth || this.keyBorderWidth;
-    this.keyHoverBackgroundColor = options.keyHoverBackgroundColor || "black";
+    this.keyHoverBorderRadius = options.keyHoverBorderRadius || this.keyBorderRadius;
+    this.keyHoverBackgroundColor = options.keyHoverBackgroundColor || this.keyBackgroundColor;
     this.keyHoverFontType = options.keyHoverFontType || this.keyFontType;
     this.keyHoverFontColor = options.keyHoverFontColor || this.keyFontColor;
 
     //Selected not hovered keys
-    this.keySelectedBorderColor = options.keySelectedBorderColor || "yellowgreen";
+    this.keySelectedBorderColor = options.keySelectedBorderColor || "#3FB55E";
     this.keySelectedBorderWidth = options.keySelectedBorderWidth || this.keyBorderWidth;
-    this.keySelectedBackgroundColor = options.keySelectedBackgroundColor || "black";
+    this.keySelectedBorderRadius = options.keySelectedBorderRadius || this.keyBorderRadius;
+    this.keySelectedBackgroundColor = options.keySelectedBackgroundColor || this.keyBackgroundColor;
     this.keySelectedFontType = options.keySelectedFontType || this.keyFontType;
     this.keySelectedFontColor = options.keySelectedFontColor || this.keyFontColor;
 
     //Selected hovered keys
-    this.keySelectedHoverBorderColor = options.keySelectedHoverBorderColor || "yellowgreen";
+    this.keySelectedHoverBorderColor = options.keySelectedHoverBorderColor || this.keySelectedBorderColor;
     this.keySelectedHoverBorderWidth = options.keySelectedHoverBorderWidth || this.keySelectedBorderWidth;
-    this.keySelectedHoverBackgroundColor = options.keySelectedHoverBackgroundColor || "black";
+    this.keySelectedHoverBorderRadius = options.keySelectedHoverBorderRadius || this.keyBorderRadius;
+    this.keySelectedHoverBackgroundColor = options.keySelectedHoverBackgroundColor || this.keySelectedBackgroundColor;
     this.keySelectedHoverFontType = options.keySelectedHoverFontType || this.keySelectedFontType;
     this.keySelectedHoverFontColor = options.keySelectedHoverFontColor || this.keySelectedFontColor;
 
