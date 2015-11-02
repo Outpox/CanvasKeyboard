@@ -4,42 +4,45 @@ var idKeyboardCount = 0;
  * The "master" class. You should only interact with this one.
  *
  * @param canvas - The <canvas> html element.
- * @param context - The context of the canvas (.getContext("2d")).
  * @param options - An object of settings for the keyboard.
  * @param debug - Boolean value.
  * @param lines - The object containing the lines. Might be removed from the constructor parameter.
  * @constructor
  */
-function Keyboard(canvas, context, options, debug, lines) {
+function Keyboard(canvas, options, debug, lines) {
     var bounds = canvas.getBoundingClientRect();
     this.id = idKeyboardCount++;
     this.layout = options.layout || "qwerty_uk.json";
     this.canvas = canvas;
-    this.context = context;
+    this.context = canvas.getContext("2d");
     this.offsetX = bounds.left || 0;
     this.offsetY = bounds.top || 0;
     this.backGroundColor = options.backGroundColor || "black";
 
     //Unselected not hovered keys
     this.keyBorderColor = options.keyBorderColor || "gray";
+    this.keyBorderWidth = options.keyBorderWidth || 1;
     this.keyBackgroundColor = options.keyBackgroundColor || "black";
     this.keyFontType = options.keyFontType || "25px Calibri";
     this.keyFontColor = options.keyFontColor || "gray";
 
     //Unselected hovered keys
     this.keyHoverBorderColor = options.keyHoverBorderColor || "white";
+    this.keyHoverBorderWidth = options.keyHoverBorderWidth || this.keyBorderWidth;
     this.keyHoverBackgroundColor = options.keyHoverBackgroundColor || "black";
-    this.keyHoverFontType = options.keyHoverFontType || options.keyFontType || "25px Calibri";
-    this.keyHoverFontColor = options.keyHoverFontColor || options.keyFontColor || "gray";
+    this.keyHoverFontType = options.keyHoverFontType || this.keyFontType;
+    this.keyHoverFontColor = options.keyHoverFontColor || this.keyFontColor;
 
     //Selected not hovered keys
     this.keySelectedBorderColor = options.keySelectedBorderColor || "yellowgreen";
+    this.keySelectedBorderWidth = options.keySelectedBorderWidth || this.keyBorderWidth;
     this.keySelectedBackgroundColor = options.keySelectedBackgroundColor || "black";
-    this.keySelectedFontType = options.keySelectedFontType || options.keyFontType || "25px Calibri";
-    this.keySelectedFontColor = options.keySelectedFontColor || options.keyFontColor || "gray";
+    this.keySelectedFontType = options.keySelectedFontType || this.keyFontType;
+    this.keySelectedFontColor = options.keySelectedFontColor || this.keyFontColor;
 
     //Selected hovered keys
     this.keySelectedHoverBorderColor = options.keySelectedHoverBorderColor || "yellowgreen";
+    this.keySelectedHoverBorderWidth = options.keySelectedHoverBorderWidth || this.keySelectedBorderWidth;
     this.keySelectedHoverBackgroundColor = options.keySelectedHoverBackgroundColor || "black";
     this.keySelectedHoverFontType = options.keySelectedHoverFontType || this.keySelectedFontType;
     this.keySelectedHoverFontColor = options.keySelectedHoverFontColor || this.keySelectedFontColor;
