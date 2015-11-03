@@ -13,6 +13,29 @@ function loadJSON(filename, callback) {
 }
 
 /**
+ * Return if the given coordinate are inside the polygon
+ * Source: https://github.com/substack/point-in-polygon
+ * @param points
+ * @param polygon
+ * @returns {boolean}
+ */
+function inside(points, polygon) {
+    var x = points[0], y = points[1];
+
+    var inside = false;
+    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        var xi = polygon[i][0], yi = polygon[i][1];
+        var xj = polygon[j][0], yj = polygon[j][1];
+
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
+}
+
+/**
+ * Draw a rounded rectangle
  * Source: http://stackoverflow.com/a/3368118
  * @param x - Starting X.
  * @param y - Starting Y.
