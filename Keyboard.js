@@ -177,7 +177,7 @@ Keyboard.prototype.init = function () {
                 }
 
                 keyStartY = line.startY + i * line.spaceY + i * keyHeight;
-                var createdKey = new Key(line, keyStartX, keyStartY, keyWidth, keyHeight, key.content, key.type || "standard");
+                var createdKey = new Key(line, keyStartX, keyStartY, keyWidth, keyHeight, key.content, key.type || "standard", key.data);
                 if (thisKeyboard.debug) console.log(createdKey);
             }
             if (thisKeyboard.debug) console.groupEnd();
