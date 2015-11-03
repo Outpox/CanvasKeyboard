@@ -110,9 +110,17 @@
         },
         {
           "content": "Enter",
-          "type": "enter",
+          "type": "custom",
           "data": {
-            "widthFactor": 2.1
+            "customShape": [
+              {"function": "moveTo", "x": 0, "y": 0},
+              {"function": "lineTo", "x": 85, "y": 0},
+              {"function": "lineTo", "x": 85, "y": 85},
+              {"function": "lineTo", "x": 15, "y": 85},
+              {"function": "lineTo", "x": 15, "y": 40},
+              {"function": "lineTo", "x": 0, "y": 40},
+              {"function": "lineTo", "x": 0, "y": 0}
+            ]
           }
         }
       ]
@@ -165,13 +173,6 @@
         },
         {
           "content": "#"
-        },
-        {
-          "content": "enter",
-          "type": "enter",
-          "data": {
-            "widthFactor": 1.7
-          }
         }
       ]
     },

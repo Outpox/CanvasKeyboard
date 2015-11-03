@@ -67,7 +67,23 @@ Key.prototype.draw = function (strokeColor, hover) {
     ctx.fillStyle = this.selected ? this.line.keyboard.keySelectedBackgroundColor : this.line.keyboard.keyBackgroundColor;
     ctx.strokeStyle = strokeColor || (this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
     ctx.lineWidth = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderWidth : this.line.keyboard.keyHoverBorderWidth) : (this.selected ? this.line.keyboard.keySelectedBorderWidth : this.line.keyboard.keyBorderWidth);
-    ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, parseInt(borderRadius), true, true);
+    if (this.type === "custom") {
+        var shape = this.data.customShape;
+        for (var i = 0; i < shape.length; i++) {
+            var func = shape[i].function;
+            var x = shape[i].x;
+            var y = shape[i].y;
+            if (func === "moveTo") {
+                ctx.moveTo(parseInt(this.startX + x), parseInt(this.startY + y));
+            }
+            if (func === "lineTo") {
+                ctx.lineTo(parseInt(this.startX + x), parseInt(this.startY + y));
+            }
+        }
+        ctx.stroke();
+    } else {
+        ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, parseInt(borderRadius), true, true);
+    }
     ctx.font = hover ? (this.selected ? this.line.keyboard.keySelectedHoverFontType : this.line.keyboard.keyHoverFontType) : (this.selected ? this.line.keyboard.keySelectedFontType : this.line.keyboard.keyFontType);
     ctx.textAlign = "center";
     ctx.fillStyle = hover ? (this.selected ? this.line.keyboard.keySelectedHoverFontColor : this.line.keyboard.keyHoverFontColor) : (this.selected ? this.line.keyboard.keySelectedFontColor : this.line.keyboard.keyFontColor);
@@ -82,5 +98,16 @@ Key.prototype.draw = function (strokeColor, hover) {
  * @returns {boolean}
  */
 Key.prototype.isPointInside = function (x, y) {
-    return (x >= this.startX && x <= this.startX + this.lengthX && y >= this.startY && y <= this.startY + this.lengthY);
+    if (this.type === "custom") {
+        var polygon = [];
+        for (var i = 0; i < this.data.customShape.length; i++) {
+            if (this.data.customShape[i].function === "lineTo"){
+            polygon.push([parseInt(this.data.customShape[i].x + this.startX), parseInt(this.data.customShape[i].y + this.startY)]);
+            }
+        }
+        return inside([x, y], polygon);
+    }
+    else {
+        return (x >= this.startX && x <= this.startX + this.lengthX && y >= this.startY && y <= this.startY + this.lengthY);
+    }
 };
