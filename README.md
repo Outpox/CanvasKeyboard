@@ -29,6 +29,7 @@ Check the doc inside the files for more explanations. I'll write an online docum
 ## To do
 * Automatic resize of the keys (in order to use the whole available space)
 * Improve custom keys
+* Change cursor on key hover (bug)
 * Add more options
 * Multiple values for a key
 * Handle Caps Lock, Num Lock, Shift
