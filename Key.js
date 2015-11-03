@@ -68,6 +68,9 @@ Key.prototype.draw = function (strokeColor, hover) {
     ctx.strokeStyle = strokeColor || (this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
     ctx.lineWidth = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderWidth : this.line.keyboard.keyHoverBorderWidth) : (this.selected ? this.line.keyboard.keySelectedBorderWidth : this.line.keyboard.keyBorderWidth);
     if (this.type === "custom") {
+        textWidth = this.startX + (this.data.customWidth / 2) || textWidth;
+        textHeight = this.startX + (this.data.customHeight / 2) || textHeight;
+        console.log(textWidth);
         var shape = this.data.customShape;
         for (var i = 0; i < shape.length; i++) {
             var func = shape[i].function;
@@ -101,8 +104,8 @@ Key.prototype.isPointInside = function (x, y) {
     if (this.type === "custom") {
         var polygon = [];
         for (var i = 0; i < this.data.customShape.length; i++) {
-            if (this.data.customShape[i].function === "lineTo"){
-            polygon.push([parseInt(this.data.customShape[i].x + this.startX), parseInt(this.data.customShape[i].y + this.startY)]);
+            if (this.data.customShape[i].function === "lineTo") {
+                polygon.push([parseInt(this.data.customShape[i].x + this.startX), parseInt(this.data.customShape[i].y + this.startY)]);
             }
         }
         return inside([x, y], polygon);

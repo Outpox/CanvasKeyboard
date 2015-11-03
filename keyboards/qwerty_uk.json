@@ -51,10 +51,10 @@
           "content": "Del"
         },
         {
-          "content": "Bkspc",
+          "content": "Bck",
           "type": "backspace",
           "data": {
-            "widthFactor": 1.4
+            "widthFactor": 1
           }
         }
       ]
@@ -112,10 +112,11 @@
           "content": "Enter",
           "type": "custom",
           "data": {
+            "customWidth": 70,
             "customShape": [
               {"function": "moveTo", "x": 0, "y": 0},
-              {"function": "lineTo", "x": 85, "y": 0},
-              {"function": "lineTo", "x": 85, "y": 85},
+              {"function": "lineTo", "x": 70, "y": 0},
+              {"function": "lineTo", "x": 70, "y": 85},
               {"function": "lineTo", "x": 15, "y": 85},
               {"function": "lineTo", "x": 15, "y": 40},
               {"function": "lineTo", "x": 0, "y": 40},
@@ -183,10 +184,10 @@
       "spaceY": 5,
       "keys": [
         {
-          "content": "Shift",
+          "content": "Shft",
           "type": "type",
           "data": {
-            "widthFactor": 1.2
+            "widthFactor": 1
           }
         },
         {
@@ -223,10 +224,10 @@
           "content": "/"
         },
         {
-          "content": "Shift",
+          "content": "Shft",
           "type": "bigcol",
           "data": {
-            "widthFactor": 1.2
+            "widthFactor": 1
           }
         },
         {
@@ -264,14 +265,14 @@
           "content": "Alt",
           "type": "alt",
           "data": {
-            "widthFactor": 1.4
+            "widthFactor": 1.3
           }
         },
         {
           "type": "space",
           "content": "space",
           "data": {
-            "widthFactor": 5.3
+            "widthFactor": 5
           }
         },
         {
