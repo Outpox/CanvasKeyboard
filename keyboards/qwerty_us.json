@@ -1,401 +1,280 @@
 {
   "description": "US ANSI keyboard",
   "img": "http://en.academic.ru/pictures/enwiki/75/KB_United_States-NoAltGr.svg",
-  "row_number": 6,
-  "keyboard": [
+  "rows": [
     {
-      "col_number": 12,
-      "class": "row12",
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "class": null,
-          "display" : "F1",
-          "value": "F1"
+          "content": "F1"
         },
         {
-          "class": null,
-          "display" : "F2",
-          "value": "F2"
+          "content": "F2"
         },
         {
-          "class": null,
-          "display" : "F3",
-          "value": "F3"
+          "content": "F3"
         },
         {
-          "class": null,
-          "display" : "F4",
-          "value": "F4"
+          "content": "F4"
         },
         {
-          "class": null,
-          "display" : "F5",
-          "value": "F5"
+          "content": "F5"
         },
         {
-          "class": null,
-          "display" : "F6",
-          "value": "F6"
+          "content": "F6"
         },
         {
-          "class": null,
-          "display" : "F7",
-          "value": "F7"
+          "content": "F7"
         },
         {
-          "class": null,
-          "display" : "F8",
-          "value": "F8"
+          "content": "F8"
         },
         {
-          "class": null,
-          "display" : "F9",
-          "value": "F9"
+          "content": "F9"
         },
         {
-          "class": null,
-          "display" : "F10",
-          "value": "F10"
+          "content": "F10"
         },
         {
-          "class": null,
-          "display" : "F11",
-          "value": "F11"
+          "content": "F11"
         },
         {
-          "class": null,
-          "display" : "F12",
-          "value": "F12"
+          "content": "F12"
         }
       ]
     },
     {
-      "col_number": 14,
-      "class": "row14-1-2",
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "class": null,
-          "value": "`",
-          "display": "`"
+          "content": "`"
         },
         {
-          "class": null,
-          "value": "1",
-          "display": "1"
+          "content": "1"
         },
         {
-          "class": null,
-          "value": "2",
-          "display": "2"
+          "content": "2"
         },
         {
-          "class": null,
-          "value": "3",
-          "display": "3"
+          "content": "3"
         },
         {
-          "class": null,
-          "value": "4",
-          "display": "4"
+          "content": "4"
         },
         {
-          "class": null,
-          "value": "5",
-          "display": "5"
+          "content": "5"
         },
         {
-          "class": null,
-          "value": "6",
-          "display": "6"
+          "content": "6"
         },
         {
-          "class": null,
-          "value": "7",
-          "display": "7"
+          "content": "7"
         },
         {
-          "class": null,
-          "value": "8",
-          "display": "8"
+          "content": "8"
         },
         {
-          "class": null,
-          "value": "9",
-          "display": "9"
+          "content": "9"
         },
         {
-          "class": null,
-          "value": "0",
-          "display": "0"
+          "content": "0"
         },
         {
-          "class": null,
-          "value": "-",
-          "display": "-"
+          "content": "-"
         },
         {
-          "class": null,
-          "value": "=",
-          "display": "="
+          "content": "="
         },
         {
-          "class": "bigcol",
-          "value": "backspace",
-          "display": "backspace"
+          "content": "backspace",
+          "type": "backspace",
+          "data": {
+            "widthFactor": 2.5
+          }
         }
       ]
     },
     {
-      "col_number": 14,
-      "class": "row14-1-1_5",
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "class": "bigcol",
-          "value": "tab",
-          "display": "tab"
+          "content": "tab",
+          "type": "tab",
+          "data": {
+            "widthFactor": 1.5
+          }
         },
         {
-          "class": null,
-          "value": "q",
-          "display": "q"
+          "content": "q"
         },
         {
-          "class": null,
-          "value": "w",
-          "display": "w"
+          "content": "w"
         },
         {
-          "class": null,
-          "value": "e",
-          "display": "e"
+          "content": "e"
         },
         {
-          "class": null,
-          "value": "r",
-          "display": "r"
+          "content": "r"
         },
         {
-          "class": null,
-          "value": "t",
-          "display": "t"
+          "content": "t"
         },
         {
-          "class": null,
-          "value": "y",
-          "display": "y"
+          "content": "y"
         },
         {
-          "class": null,
-          "value": "u",
-          "display": "u"
+          "content": "u"
         },
         {
-          "class": null,
-          "value": "i",
-          "display": "i"
+          "content": "i"
         },
         {
-          "class": null,
-          "value": "o",
-          "display": "o"
+          "content": "o"
         },
         {
-          "class": null,
-          "value": "p",
-          "display": "p"
+          "content": "p"
         },
         {
-          "class": null,
-          "value": "[",
-          "display": "["
+          "content": "["
         },
         {
-          "class": null,
-          "value": "]",
-          "display": "]"
+          "content": "]"
         },
         {
-          "class": null,
-          "value": "\\",
-          "display": "\\"
+          "content": "\\",
+          "type": "tab",
+          "data": {
+            "widthFactor": 1.4
+          }
         }
       ]
     },
     {
-      "col_number": 13,
-      "class": "row14-1-2",
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "class": "bigcol",
-          "value": "capslock",
-          "display": "capslock"
+          "content": "capslock"
         },
         {
-          "class": null,
-          "value": "a",
-          "display": "a"
+          "content": "a"
         },
         {
-          "class": null,
-          "value": "s",
-          "display": "s"
+          "content": "s"
         },
         {
-          "class": null,
-          "value": "d",
-          "display": "d"
+          "content": "d"
         },
         {
-          "class": null,
-          "value": "f",
-          "display": "f"
+          "content": "f"
         },
         {
-          "class": null,
-          "value": "g",
-          "display": "g"
+          "content": "g"
         },
         {
-          "class": null,
-          "value": "h",
-          "display": "h"
+          "content": "h"
         },
         {
-          "class": null,
-          "value": "j",
-          "display": "j"
+          "content": "j"
         },
         {
-          "class": null,
-          "value": "k",
-          "display": "k"
+          "content": "k"
         },
         {
-          "class": null,
-          "value": "l",
-          "display": "l"
+          "content": "l"
         },
         {
-          "class": null,
-          "value": ";",
-          "display": ";"
+          "content": ";"
         },
         {
-          "class": null,
-          "value": "'",
-          "display": "'"
+          "content": "'"
         },
         {
-          "class": "bigcol",
-          "value": "enter",
-          "display": "enter"
+          "content": "enter"
         }
       ]
     },
     {
-      "col_number": 12,
-      "class": "row12-2-1",
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "class": "bigcol",
-          "value": "shift",
-          "display": "shift"
+          "content": "shift"
         },
         {
-          "class": null,
-          "value": "z",
-          "display": "z"
+          "content": "z"
         },
         {
-          "class": null,
-          "value": "x",
-          "display": "x"
+          "content": "x"
         },
         {
-          "class": null,
-          "value": "c",
-          "display": "c"
+          "content": "c"
         },
         {
-          "class": null,
-          "value": "v",
-          "display": "v"
+          "content": "v"
         },
         {
-          "class": null,
-          "value": "b",
-          "display": "b"
+          "content": "b"
         },
         {
-          "class": null,
-          "value": "n",
-          "display": "n"
+          "content": "n"
         },
         {
-          "class": null,
-          "value": "m",
-          "display": "m"
+          "content": "m"
         },
         {
-          "class": null,
-          "value": ",",
-          "display": ","
+          "content": ","
         },
         {
-          "class": null,
-          "value": ".",
-          "display": "."
+          "content": "."
         },
         {
-          "class": null,
-          "value": "/",
-          "display": "/"
+          "content": "/"
         },
         {
-          "class": "bigcol",
-          "value": "shift",
-          "display": "shift"
+          "content": "shift"
         }
       ]
     },
     {
-      "col_number": 7,
-      "class": "row7-1-5",
+      "startX": 10,
+      "startY": 10,
+      "spaceX": 5,
+      "spaceY": 5,
       "keys": [
         {
-          "class": null,
-          "value": "ctrl",
-          "display": "ctrl"
+          "content": "ctrl"
         },
         {
-          "class": "empty",
-          "value": "",
-          "display": ""
+          "content": ""
         },
         {
-          "class": null,
-          "value": "alt",
-          "display": "alt"
+          "content": "alt"
         },
         {
-          "class": "bigcol",
-          "value": "space",
-          "display": "space"
+          "content": "space"
         },
         {
-          "class": null,
-          "value": "alt",
-          "display": "alt"
+          "content": "alt"
         },
         {
-          "class": "empty",
-          "value": "",
-          "display": ""
+          "content": ""
         },
         {
-          "class": null,
-          "value": "ctrl",
-          "display": "ctrl"
+          "content": "ctrl"
         }
       ]
     }
