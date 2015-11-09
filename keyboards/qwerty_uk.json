@@ -259,7 +259,10 @@
           "content": "Fn"
         },
         {
-          "content": "Win"
+          "content": "Win",
+          "data": {
+            "disabled" : true
+          }
         },
         {
           "content": "Alt",
@@ -279,10 +282,16 @@
           "content": "AltGr"
         },
         {
-          "content": "Fn"
+          "content": "Fn",
+          "data": {
+            "disabled" : true
+          }
         },
         {
-          "content": "Pn"
+          "content": "Pn",
+          "data": {
+            "disabled" : true
+          }
         },
         {
           "content": "\u2190"
