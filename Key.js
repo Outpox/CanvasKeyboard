@@ -23,6 +23,7 @@ function Key(line, startX, startY, lengthX, lengthY, content, type, data) {
     this.data = data || {};
     this.line = line;
     this.selected = false;
+    this.disabled = this.data.disabled || false;
     line.pushKey(this);
     this.draw();
 }
@@ -70,7 +71,6 @@ Key.prototype.draw = function (strokeColor, hover) {
     if (this.type === "custom") {
         textWidth = this.startX + (this.data.customWidth / 2) || textWidth;
         textHeight = this.startX + (this.data.customHeight / 2) || textHeight;
-        console.log(textWidth);
         var shape = this.data.customShape;
         for (var i = 0; i < shape.length; i++) {
             var func = shape[i].function;
@@ -84,6 +84,8 @@ Key.prototype.draw = function (strokeColor, hover) {
             }
         }
         ctx.stroke();
+        ctx.fill();
+        //ctx._roundPoly(this, parseInt(borderRadius));
     } else {
         ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, parseInt(borderRadius), true, true);
     }
@@ -111,6 +113,8 @@ Key.prototype.isPointInside = function (x, y) {
         return inside([x, y], polygon);
     }
     else {
-        return (x >= this.startX && x <= this.startX + this.lengthX && y >= this.startY && y <= this.startY + this.lengthY);
+        var res = x >= this.startX && x <= this.startX + this.lengthX && y >= this.startY && y <= this.startY + this.lengthY;
+        if (this.line.keyboard.debug) console.log(res + " | mouseX: " + x + " | mouseY: " + y + " | keyX: " + this.startX + " | keyY: " + this.startY);
+        return (res);
     }
 };
