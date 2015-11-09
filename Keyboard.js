@@ -12,11 +12,14 @@ var idKeyboardCount = 0;
 function Keyboard(canvas, options, debug, lines) {
     var bounds = canvas.getBoundingClientRect();
     this.id = idKeyboardCount++;
-    this.layout = options.layout || "qwerty_uk.json";
+    this.layout = options.layout || "qwerty_uk";
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.offsetX = bounds.left || 0;
     this.offsetY = bounds.top || 0;
+    this.defaultCursor = options.defaultCursor || "auto";
+    this.hoverCursor = options.hoverCursor || "pointer";
+    this.disabledCursor = options.disabledCursor || "auto";
     this.backGroundColor = options.backGroundColor || "black";
 
     //Unselected not hovered keys
@@ -52,7 +55,7 @@ function Keyboard(canvas, options, debug, lines) {
     this.keySelectedHoverFontColor = options.keySelectedHoverFontColor || this.keySelectedFontColor;
 
     this.debug = debug || false;
-    this.cursor = {x: null, y: null};
+    this.mouseClick = {x: null, y: null};
     this.lines = lines || [];
     this.selectedKey = {};
 }
@@ -86,8 +89,8 @@ Keyboard.prototype.handleMouseDown = function (e) {
         var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY);
         for (var j = 0; j < this.lines[i].keys.length; j++) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
-                this.cursor.x = mouseX;
-                this.cursor.y = mouseY;
+                this.mouseClick.x = mouseX;
+                this.mouseClick.y = mouseY;
                 if (this.debug) console.log(this.lines[i].keys[j].content);
                 if (this.selectedKey === this.lines[i].keys[j]) {
                     this.selectedKey.selected = false;
@@ -109,15 +112,15 @@ Keyboard.prototype.handleMouseDown = function (e) {
  */
 Keyboard.prototype.handleMouseHover = function (e) {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    var hover = {"hover": false};
     for (var i = 0; i < this.lines.length; i++) {
         var mouseX = parseInt(e.clientX - this.offsetX + this.lines[i].startX);
         var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY);
         for (var j = 0; j < this.lines[i].keys.length; j++) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
                 //Prevent the click event to be casted twice
-                if (mouseX !== this.cursor.x || mouseY !== this.cursor.y) {
-                    this.lines[i].keys[j].hover();
-                    if (this.debug) console.log(this.lines[i].keys[j].content);
+                if (mouseX !== this.mouseClick.x || mouseY !== this.mouseClick.y) {
+                    hover = {"hover": true, "i": i, "j": j};
                 }
                 else {
                     this.lines[i].keys[j].reDraw();
@@ -128,6 +131,21 @@ Keyboard.prototype.handleMouseHover = function (e) {
             }
         }
     }
+    if (this.debug) console.log(hover);
+    if (hover.hover) {
+        var currentKey = this.lines[hover.i].keys[hover.j];
+        if (currentKey.disabled) {
+            this.canvas.style.cursor = this.disabledCursor;
+            currentKey.draw();
+        } else {
+            this.canvas.style.cursor = this.hoverCursor;
+            currentKey.hover();
+        }
+        if (this.debug) console.log(this.lines[i].keys[j].content);
+    }
+    else {
+        this.canvas.style.cursor = this.defaultCursor;
+    }
 };
 
 /**
@@ -137,7 +155,7 @@ Keyboard.prototype.init = function () {
     var layout = {};
     var thisKeyboard = this;
 
-    loadJSON("keyboards/" + thisKeyboard.layout, function (data) {
+    loadJSON("keyboards/" + thisKeyboard.layout + ".json", function (data) {
         layout = JSON.parse(data);
         var maxWidth = thisKeyboard.canvas.width;
         var maxHeight = thisKeyboard.canvas.height;
@@ -165,7 +183,7 @@ Keyboard.prototype.init = function () {
                             keyStartY = line.startY + lineOffsetY + i * line.spaceY + i * keyHeight;
 
                             lineOffsetX += (keyWidth * (key.data.widthFactor || 1)) - keyWidth;
-                            lineOffsetY += (keyHeight* (key.data.heightFactor || 1)) - keyHeight;
+                            lineOffsetY += (keyHeight * (key.data.heightFactor || 1)) - keyHeight;
 
                             keyWidth *= (key.data.widthFactor || 1);
                             keyHeight *= (key.data.heightFactor || 1);
