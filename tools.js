@@ -78,3 +78,34 @@ CanvasRenderingContext2D.prototype._roundRect = function (x, y, width, height, r
         this.stroke();
     }
 };
+
+/**
+ *
+ * @param key
+ * @param radius
+ */
+CanvasRenderingContext2D.prototype._roundPoly = function (key, radius) {
+    var shape = key.data.shape;
+    var x = null;
+    var y = null;
+    var lastX = null;
+    var lastY = null;
+    var lastChange = null; //horizontal || vertical
+
+    for (var i = 0; i < shape.length; i++) {
+        x = shape[i].x;
+        y = shape[i].y;
+        switch (shape[i].function) {
+            case "moveTo":
+                this.moveTo(parseInt(key.startX + x), parseInt(key.startY + y));
+                break;
+
+            case "lineTo":
+                this.lineTo(parseInt(key.startX + x), parseInt(key.startY + y));
+
+                break;
+        }
+    }
+    ctx.stroke();
+    ctx.fill();
+};
