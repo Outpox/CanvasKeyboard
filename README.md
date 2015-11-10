@@ -24,12 +24,12 @@ Check the doc inside the files for more explanations. I'll write an online docum
 * Support click, selected and hover events
   * You can configure the keyboard for each state and each combination of events
 * Custom shaped keys
+* Custom cursor for hover, click, disabled keys...
 * Easy to use
 
 ## To do
 * Automatic resize of the keys (in order to use the whole available space)
 * Improve custom keys
-* Change cursor on key hover (bug)
 * Add more options
 * Multiple values for a key
 * Handle Caps Lock, Num Lock, Shift
