@@ -5,8 +5,8 @@
     {
       "startX": 10,
       "startY": 10,
-      "spaceX": 5,
-      "spaceY": 5,
+      "spaceX": 18.5,
+      "spaceY": 0,
       "keys": [
         {
           "content": "F1"
@@ -110,7 +110,7 @@
           "content": "tab",
           "type": "tab",
           "data": {
-            "widthFactor": 1.5
+            "widthFactor": 1.7
           }
         },
         {
@@ -153,7 +153,7 @@
           "content": "\\",
           "type": "tab",
           "data": {
-            "widthFactor": 1.4
+            "widthFactor": 1.8
           }
         }
       ]
@@ -165,7 +165,11 @@
       "spaceY": 5,
       "keys": [
         {
-          "content": "capslock"
+          "content": "capslock",
+          "type": "capslock",
+          "data": {
+            "widthFactor": 2
+          }
         },
         {
           "content": "a"
@@ -201,7 +205,11 @@
           "content": "'"
         },
         {
-          "content": "enter"
+          "content": "enter",
+          "type": "enter",
+          "data": {
+            "widthFactor": 2.63
+          }
         }
       ]
     },
@@ -212,7 +220,11 @@
       "spaceY": 5,
       "keys": [
         {
-          "content": "shift"
+          "content": "shift",
+          "type": "shift",
+          "data": {
+            "widthFactor": 2.5
+          }
         },
         {
           "content": "z"
@@ -245,7 +257,11 @@
           "content": "/"
         },
         {
-          "content": "shift"
+          "content": "shift",
+          "type": "shift",
+          "data": {
+            "widthFactor": 3.25
+          }
         }
       ]
     },
@@ -256,25 +272,53 @@
       "spaceY": 5,
       "keys": [
         {
-          "content": "ctrl"
+          "content": "ctrl",
+          "type": "ctrl",
+          "data": {
+            "widthFactor": 1.5
+          }
         },
         {
-          "content": ""
+          "content": "Win",
+          "type": "win",
+          "data": {
+            "widthFactor": 1.2
+          }
         },
         {
-          "content": "alt"
+          "content": "alt",
+          "type": "alt",
+          "data": {
+            "widthFactor": 1.2
+          }
         },
         {
-          "content": "space"
+          "content": "space",
+          "type": "space",
+          "data": {
+            "widthFactor": 8.57
+          }
         },
         {
-          "content": "alt"
+          "content": "alt",
+          "type": "shift",
+          "data": {
+            "widthFactor": 1.2
+          }
         },
         {
-          "content": ""
+          "content": "Win",
+          "type": "shift",
+          "data": {
+            "widthFactor": 1.2
+          }
         },
         {
-          "content": "ctrl"
+          "content": "ctrl",
+          "type": "ctrl",
+          "data": {
+            "widthFactor": 1.5
+          }
         }
       ]
     }
