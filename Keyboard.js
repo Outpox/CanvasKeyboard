@@ -20,7 +20,7 @@ function Keyboard(canvas, options, debug, lines) {
     this.defaultCursor = options.defaultCursor || "auto";
     this.hoverCursor = options.hoverCursor || "pointer";
     this.disabledCursor = options.disabledCursor || "auto";
-    this.backGroundColor = options.backGroundColor || "black";
+    this.backgroundColor = options.backgroundColor || canvas.style.backgroundColor || "white";
 
     //Unselected not hovered keys
     this.keyBorderColor = options.keyBorderColor || "gray";
@@ -58,12 +58,14 @@ function Keyboard(canvas, options, debug, lines) {
     this.mouseClick = {x: null, y: null};
     this.lines = lines || [];
     this.selectedKey = {};
+
+    this.canvas.style.backgroundColor = this.backgroundColor;
 }
 /**
  * The options object accept the following properties:
  *
  * layout | The layout name of the json file (without "templates/") | default: "qwerty_uk.json"
- * backGroundColor | The keyboard background color | default: "black"
+ * backgroundColor | The keyboard background color | default: "black"
  * keyBorderColor | The keys border color | default: "gray"
  * keyFontColor | The keys font color | default: "gray"
  * keyFontType | The keys text font and size | default: "25px Calibri"
