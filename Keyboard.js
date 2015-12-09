@@ -12,7 +12,7 @@ var idKeyboardCount = 0;
 function Keyboard(canvas, options, debug, lines) {
     var bounds = canvas.getBoundingClientRect();
     this.id = idKeyboardCount++;
-    this.layout = options.layout || "qwerty_uk";
+    this.layout = options.layout || "keyboards/qwerty_uk.json";
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.offsetX = bounds.left || 0;
@@ -64,7 +64,7 @@ function Keyboard(canvas, options, debug, lines) {
 /**
  * The options object accept the following properties:
  *
- * layout | The layout name of the json file (without "templates/") | default: "qwerty_uk.json"
+ * layout | The layout name of the json file | default: "keyboards/qwerty_uk.json"
  * backgroundColor | The keyboard background color | default: "black"
  * keyBorderColor | The keys border color | default: "gray"
  * keyFontColor | The keys font color | default: "gray"
@@ -84,11 +84,11 @@ Keyboard.prototype.pushLine = function (Line) {
  * @param e
  */
 Keyboard.prototype.handleMouseDown = function (e) {
-    document.getElementById("x").innerText = parseInt(e.clientX).toString();
-    document.getElementById("y").innerText = parseInt(e.clientY).toString();
+    // document.getElementById("x").innerText = parseInt(e.clientX).toString();
+    // document.getElementById("y").innerText = parseInt(e.clientY).toString();
     for (var i = 0; i < this.lines.length; i++) {
-        var mouseX = parseInt(e.clientX - this.offsetX + this.lines[i].startX);
-        var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY);
+        var mouseX = parseInt(e.clientX - this.offsetX + this.lines[i].startX + window.pageXOffset);
+        var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY + window.pageYOffset);
         for (var j = 0; j < this.lines[i].keys.length; j++) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
                 this.mouseClick.x = mouseX;
@@ -102,7 +102,8 @@ Keyboard.prototype.handleMouseDown = function (e) {
                     this.selectedKey = this.lines[i].keys[j];
                     this.selectedKey.selected = true;
                 }
-                document.getElementById("selectedKey").innerText = this.selectedKey.content;
+                this.canvas.dispatchEvent(new Event("keyClick"));
+                // document.getElementById("selectedKey").innerText = this.selectedKey.content;
             }
         }
     }
@@ -116,8 +117,8 @@ Keyboard.prototype.handleMouseHover = function (e) {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     var hover = {"hover": false};
     for (var i = 0; i < this.lines.length; i++) {
-        var mouseX = parseInt(e.clientX - this.offsetX + this.lines[i].startX);
-        var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY);
+        var mouseX = parseInt(e.clientX - this.offsetX + this.lines[i].startX + window.pageXOffset);
+        var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY + window.pageYOffset);
         for (var j = 0; j < this.lines[i].keys.length; j++) {
             if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
                 //Prevent the click event to be casted twice
@@ -157,7 +158,7 @@ Keyboard.prototype.init = function () {
     var layout = {};
     var thisKeyboard = this;
 
-    loadJSON("keyboards/" + thisKeyboard.layout + ".json", function (data) {
+    loadJSON(thisKeyboard.layout, function (data) {
         layout = JSON.parse(data);
         var maxWidth = thisKeyboard.canvas.width;
         var maxHeight = thisKeyboard.canvas.height;
