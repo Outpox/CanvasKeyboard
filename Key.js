@@ -71,20 +71,8 @@ Key.prototype.draw = function (strokeColor, hover) {
     if (this.type === "custom") {
         textWidth = this.startX + (this.data.customWidth / 2) || textWidth;
         textHeight = this.startX + (this.data.customHeight / 2) || textHeight;
-        var shape = this.data.customShape;
-        for (var i = 0; i < shape.length; i++) {
-            var func = shape[i].function;
-            var x = shape[i].x;
-            var y = shape[i].y;
-            if (func === "moveTo") {
-                ctx.moveTo(parseInt(this.startX + x), parseInt(this.startY + y));
-            }
-            if (func === "lineTo") {
-                ctx.lineTo(parseInt(this.startX + x), parseInt(this.startY + y));
-            }
-        }
-        ctx.stroke();
-        ctx.fill();
+
+        //ctx._customShape(this);
         //ctx._roundPoly(this, parseInt(borderRadius));
     } else {
         ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, parseInt(borderRadius), true, true);
