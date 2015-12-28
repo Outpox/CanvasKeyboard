@@ -76,7 +76,8 @@ crashlytics-build.properties
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -123,3 +124,12 @@ Temporary Items
 # sftp configuration file
 sftp-config.json
 
+#Google closure compiler
+compiler.jar
+
+#Custom scripts
+minify.bat
+update.bat
+
+#Bin, not ready to be shipped yet
+canvaskeyboard.min.js
