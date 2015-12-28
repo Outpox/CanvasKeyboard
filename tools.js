@@ -1,5 +1,9 @@
+/**
+ * Do an Ajax Request with json mime type
+ * @param filename
+ * @param callback
+ */
 function loadJSON(filename, callback) {
-
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', filename, true);
@@ -126,3 +130,20 @@ CanvasRenderingContext2D._customShape = function (key) {
     this.stroke();
     this.fill();
 };
+
+/**
+ * Override the CustomEvent function to add IE support
+ * Source: https://developer.mozilla.org/fr/docs/Web/API/CustomEvent
+ */
+(function () {
+    function CustomEvent ( event, params ) {
+        params = params || { bubbles: false, cancelable: false, detail: undefined };
+        var evt = document.createEvent( 'CustomEvent' );
+        evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+        return evt;
+    }
+
+    CustomEvent.prototype = window.Event.prototype;
+
+    window.CustomEvent = CustomEvent;
+})();
