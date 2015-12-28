@@ -23,6 +23,7 @@ function Key(line, startX, startY, lengthX, lengthY, content, type, data) {
     this.data = data || {};
     this.line = line;
     this.selected = false;
+    this.active = false;
     this.disabled = this.data.disabled || false;
     line.pushKey(this);
     this.draw();
@@ -65,9 +66,8 @@ Key.prototype.draw = function (strokeColor, hover) {
     var borderRadius = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderRadius : this.line.keyboard.keyHoverBorderRadius) : (this.selected ? this.line.keyboard.keySelectedBorderRadius : this.line.keyboard.keyBorderRadius);
     ctx.save();
     ctx.beginPath();
-    if (this.disabled)
-        ctx.globalAlpha = 0.5;
-    ctx.fillStyle = this.selected ? this.line.keyboard.keySelectedBackgroundColor : this.line.keyboard.keyBackgroundColor;
+    if (this.disabled) ctx.globalAlpha = 0.5;
+    ctx.fillStyle = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBackgroundColor : (this.active ? this.line.keyboard.keyActiveBackgroundColor : this.line.keyboard.keyHoverBackgroundColor)) : (this.selected ? this.line.keyboard.keySelectedBackgroundColor : (this.active ? this.line.keyboard.keyActiveBackgroundColor : this.line.keyboard.keyBackgroundColor));
     ctx.strokeStyle = strokeColor || (this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
     ctx.lineWidth = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderWidth : this.line.keyboard.keyHoverBorderWidth) : (this.selected ? this.line.keyboard.keySelectedBorderWidth : this.line.keyboard.keyBorderWidth);
     if (this.type === "custom") {
