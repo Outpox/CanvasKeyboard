@@ -1,4 +1,4 @@
-var options = {"layout": "qwerty_uk", "backgroundColor": "transparent", "keyFontColor": "black", "keyBackgroundColor": "lightgrey", "keyBorderColor": "black", "keyHoverBorderColor": "gray"};
+var options = {"layout": "keyboards/qwerty_us.json", "backgroundColor": "transparent", "keyFontColor": "black", "keyBackgroundColor": "lightgrey", "keyBorderColor": "black", "keyHoverBorderColor": "gray"};
 
 var kb = new Keyboard(document.getElementById("keyboard"), options);
 kb.init();
