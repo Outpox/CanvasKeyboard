@@ -15,8 +15,10 @@ function Keyboard(canvas, options, debug, lines) {
     this.layout = options.layout || "keyboards/qwerty_uk.json";
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
-    this.offsetX = bounds.left || 0;
-    this.offsetY = bounds.top || 0;
+    this.keyWidth = options.keyWidth || 40;
+    this.keyHeight = options.keyHeight || 40;
+    this.offsetX = parseInt(bounds.left) || 0;
+    this.offsetY = parseInt(bounds.top) || 0;
     this.defaultCursor = options.defaultCursor || "auto";
     this.hoverCursor = options.hoverCursor || "pointer";
     this.disabledCursor = options.disabledCursor || "auto";
@@ -24,8 +26,8 @@ function Keyboard(canvas, options, debug, lines) {
 
     //Unselected not hovered keys
     this.keyBorderColor = options.keyBorderColor || "gray";
-    this.keyBorderWidth = options.keyBorderWidth || 1;
-    this.keyBorderRadius = options.keyBorderRadius || 1;
+    this.keyBorderWidth = parseInt(options.keyBorderWidth) || 1;
+    this.keyBorderRadius = parseInt(options.keyBorderRadius) || 0;
     this.keyBackgroundColor = options.keyBackgroundColor || "black";
     this.keyFontType = options.keyFontType || "25px Calibri";
     this.keyFontColor = options.keyFontColor || "gray";
@@ -53,6 +55,12 @@ function Keyboard(canvas, options, debug, lines) {
     this.keySelectedHoverBackgroundColor = options.keySelectedHoverBackgroundColor || this.keySelectedBackgroundColor;
     this.keySelectedHoverFontType = options.keySelectedHoverFontType || this.keySelectedFontType;
     this.keySelectedHoverFontColor = options.keySelectedHoverFontColor || this.keySelectedFontColor;
+
+    //Active not Selected
+    this.keyActiveBackgroundColor = options.keyActiveBackgroundColor || "rgb(22, 160, 133)";
+
+    //Active Selected
+    //this.keyActiveSelectedBackgroundColor = options.keyActiveSelectedBackgroundColor || this.keySelectedBackgroundColor;
 
     this.debug = debug || false;
     this.mouseClick = {x: null, y: null};
@@ -102,7 +110,7 @@ Keyboard.prototype.handleMouseDown = function (e) {
                     this.selectedKey = this.lines[i].keys[j];
                     this.selectedKey.selected = true;
                 }
-                this.canvas.dispatchEvent(new CustomEvent("keyClick", { 'detail': this.selectedKey }));
+                this.canvas.dispatchEvent(new CustomEvent("keyClick", {'detail': {'selectedKey': this.selectedKey, 'e': e}}));
                 // document.getElementById("selectedKey").innerText = this.selectedKey.content;
             }
         }
@@ -174,8 +182,8 @@ Keyboard.prototype.init = function () {
 
             for (var j = 0; j < layout.rows[i].keys.length; j++) {
                 var key = layout.rows[i].keys[j];
-                var keyWidth = 40;
-                var keyHeight = 40;
+                var keyWidth = thisKeyboard.keyWidth;
+                var keyHeight = thisKeyboard.keyHeight;
 
                 var keyStartX = 0;
                 var keyStartY = 0;
@@ -210,6 +218,18 @@ Keyboard.prototype.init = function () {
             thisKeyboard.handleMouseHover(e);
         });
     });
+};
+
+/**
+ * Re-render the keyboard
+ */
+Keyboard.prototype.reDraw = function () {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    for (var i = 0; i < this.lines.length; i++) {
+        for (var j = 0; j < this.lines[i].keys.length; j++) {
+            this.lines[i].keys[j].draw();
+        }
+    }
 };
 
 /**
