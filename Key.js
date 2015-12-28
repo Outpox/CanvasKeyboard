@@ -65,6 +65,8 @@ Key.prototype.draw = function (strokeColor, hover) {
     var borderRadius = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderRadius : this.line.keyboard.keyHoverBorderRadius) : (this.selected ? this.line.keyboard.keySelectedBorderRadius : this.line.keyboard.keyBorderRadius);
     ctx.save();
     ctx.beginPath();
+    if (this.disabled)
+        ctx.globalAlpha = 0.5;
     ctx.fillStyle = this.selected ? this.line.keyboard.keySelectedBackgroundColor : this.line.keyboard.keyBackgroundColor;
     ctx.strokeStyle = strokeColor || (this.selected ? this.line.keyboard.keySelectedBorderColor : this.line.keyboard.keyBorderColor);
     ctx.lineWidth = hover ? (this.selected ? this.line.keyboard.keySelectedHoverBorderWidth : this.line.keyboard.keyHoverBorderWidth) : (this.selected ? this.line.keyboard.keySelectedBorderWidth : this.line.keyboard.keyBorderWidth);
@@ -74,6 +76,12 @@ Key.prototype.draw = function (strokeColor, hover) {
 
         //ctx._customShape(this);
         //ctx._roundPoly(this, parseInt(borderRadius));
+    } else if (this.type === "square") {
+        this.lengthX = this.data.customWidth || this.lengthX;
+        this.lengthY = this.data.customHeight || this.lengthY;
+        textWidth = this.startX + (this.lengthX / 2) || textWidth;
+        textHeight = ctx.measureText("I").width + this.startY + (this.lengthY / 2);
+        ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, parseInt(borderRadius), true, true);
     } else {
         ctx._roundRect(this.startX, this.startY, this.lengthX, this.lengthY, parseInt(borderRadius), true, true);
     }
@@ -105,4 +113,8 @@ Key.prototype.isPointInside = function (x, y) {
         if (this.line.keyboard.debug) console.log(res + " | mouseX: " + x + " | mouseY: " + y + " | keyX: " + this.startX + " | keyY: " + this.startY);
         return (res);
     }
+};
+
+Key.prototype.getValue = function () {
+    return (this.data.value !== undefined) ? this.data.value : this.content;
 };
