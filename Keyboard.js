@@ -170,16 +170,46 @@ Keyboard.prototype.init = function () {
         layout = JSON.parse(data);
         var maxWidth = thisKeyboard.canvas.width;
         var maxHeight = thisKeyboard.canvas.height;
+        var lineStartXSum = 0;
+        var lineStartYSum = 0;
         for (var i = 0; i < layout.rows.length; i++) {
-            var lineWidth = 0;
-            var lineHeight = 0;
-            var line = new Line(thisKeyboard, layout.rows[i].startX, layout.rows[i].startY, layout.rows[i].spaceX, layout.rows[i].spaceY);
+            lineStartXSum += layout.rows[i].startX;
+            lineStartYSum += layout.rows[i].startY;
+
+            var totalWidth = 0;
+            var totalHeight = 0;
+            var line = new Line(thisKeyboard, lineStartXSum, lineStartYSum, layout.rows[i].spaceX, layout.rows[i].spaceY);
             if (thisKeyboard.debug) console.group();
             if (thisKeyboard.debug) console.log(line);
 
             var lineOffsetX = 0;
             var lineOffsetY = 0;
 
+            for (var l = 0; l <= layout.rows[i].keys.length; l++) {
+                var key = layout.rows[i].keys[l];
+                if (l === layout.rows[i].keys.length) {
+                    totalWidth += line.spaceX;
+                }
+                else {
+                    if (key.data !== undefined) {
+                        totalWidth += thisKeyboard.keyWidth * (key.data.widthFactor || 1) + line.spaceX;
+                    }
+                    else {
+                        totalWidth += thisKeyboard.keyWidth + line.spaceX;
+                    }
+                }
+            }
+
+            //Math.round((VALUE HERE) * 100) / 100;
+            var spareWidth = Math.round((maxWidth - totalWidth) * 100) / 100;
+            var spareWidthPerKey = Math.round((spareWidth/layout.rows[i].keys.length) * 1000) / 1000;
+            console.group("Row " + i);
+            console.log("maxwidth: " + maxWidth);
+            console.log("totalwidth: " + totalWidth);
+            console.log("sparewidth: " + spareWidth);
+            console.log(layout.rows[i].keys.length + " keys");
+            console.log(spareWidthPerKey + " per key");
+            console.groupEnd();
             for (var j = 0; j < layout.rows[i].keys.length; j++) {
                 var key = layout.rows[i].keys[j];
                 var keyWidth = thisKeyboard.keyWidth;
