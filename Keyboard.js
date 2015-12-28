@@ -90,7 +90,7 @@ Keyboard.prototype.handleMouseDown = function (e) {
         var mouseX = parseInt(e.clientX - this.offsetX + this.lines[i].startX + window.pageXOffset);
         var mouseY = parseInt(e.clientY - this.offsetY + this.lines[i].startY + window.pageYOffset);
         for (var j = 0; j < this.lines[i].keys.length; j++) {
-            if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY)) {
+            if (this.lines[i].keys[j].isPointInside(mouseX - this.lines[i].startX, mouseY - this.lines[i].startY) && !this.lines[i].keys[j].disabled) {
                 this.mouseClick.x = mouseX;
                 this.mouseClick.y = mouseY;
                 if (this.debug) console.log(this.lines[i].keys[j].content);
@@ -102,7 +102,7 @@ Keyboard.prototype.handleMouseDown = function (e) {
                     this.selectedKey = this.lines[i].keys[j];
                     this.selectedKey.selected = true;
                 }
-                this.canvas.dispatchEvent(new Event("keyClick"));
+                this.canvas.dispatchEvent(new CustomEvent("keyClick", { 'detail': this.selectedKey }));
                 // document.getElementById("selectedKey").innerText = this.selectedKey.content;
             }
         }
