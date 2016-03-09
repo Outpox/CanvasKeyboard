@@ -164,12 +164,12 @@ Keyboard.prototype.handleMouseHover = function (e) {
  */
 Keyboard.prototype.init = function () {
     var layout = {};
-    var thisKeyboard = this;
+    var self = this;
 
-    loadJSON(thisKeyboard.layout, function (data) {
+    loadJSON(self.layout, function (data) {
         layout = JSON.parse(data);
-        var maxWidth = thisKeyboard.canvas.width;
-        var maxHeight = thisKeyboard.canvas.height;
+        var maxWidth = self.canvas.width;
+        var maxHeight = self.canvas.height;
         var lineStartXSum = 0;
         var lineStartYSum = 0;
         for (var i = 0; i < layout.rows.length; i++) {
@@ -178,9 +178,9 @@ Keyboard.prototype.init = function () {
 
             var totalWidth = 0;
             var totalHeight = 0;
-            var line = new Line(thisKeyboard, lineStartXSum, lineStartYSum, layout.rows[i].spaceX, layout.rows[i].spaceY);
-            if (thisKeyboard.debug) console.group();
-            if (thisKeyboard.debug) console.log(line);
+            var line = new Line(self, lineStartXSum, lineStartYSum, layout.rows[i].spaceX, layout.rows[i].spaceY);
+            if (self.debug) console.group();
+            if (self.debug) console.log(line);
 
             var lineOffsetX = 0;
             var lineOffsetY = 0;
@@ -192,10 +192,10 @@ Keyboard.prototype.init = function () {
                 }
                 else {
                     if (key.data !== undefined) {
-                        totalWidth += thisKeyboard.keyWidth * (key.data.widthFactor || 1) + line.spaceX;
+                        totalWidth += self.keyWidth * (key.data.widthFactor || 1) + line.spaceX;
                     }
                     else {
-                        totalWidth += thisKeyboard.keyWidth + line.spaceX;
+                        totalWidth += self.keyWidth + line.spaceX;
                     }
                 }
             }
@@ -212,8 +212,8 @@ Keyboard.prototype.init = function () {
             console.groupEnd();
             for (var j = 0; j < layout.rows[i].keys.length; j++) {
                 var key = layout.rows[i].keys[j];
-                var keyWidth = thisKeyboard.keyWidth;
-                var keyHeight = thisKeyboard.keyHeight;
+                var keyWidth = self.keyWidth;
+                var keyHeight = self.keyHeight;
 
                 var keyStartX = 0;
                 var keyStartY = 0;
@@ -237,15 +237,15 @@ Keyboard.prototype.init = function () {
 
                 keyStartY = line.startY + i * line.spaceY + i * keyHeight;
                 var createdKey = new Key(line, keyStartX, keyStartY, keyWidth, keyHeight, key.content, key.type || "standard", key.data);
-                if (thisKeyboard.debug) console.log(createdKey);
+                if (self.debug) console.log(createdKey);
             }
-            if (thisKeyboard.debug) console.groupEnd();
+            if (self.debug) console.groupEnd();
         }
-        thisKeyboard.canvas.addEventListener("click", function (e) {
-            thisKeyboard.handleMouseDown(e);
+        self.canvas.addEventListener("click", function (e) {
+            self.handleMouseDown(e);
         });
-        thisKeyboard.canvas.addEventListener("mousemove", function (e) {
-            thisKeyboard.handleMouseHover(e);
+        self.canvas.addEventListener("mousemove", function (e) {
+            self.handleMouseHover(e);
         });
     });
 };
