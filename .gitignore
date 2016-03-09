@@ -133,3 +133,5 @@ update.bat
 
 #Bin, not ready to be shipped yet
 canvaskeyboard.min.js
+
+node_modules/
