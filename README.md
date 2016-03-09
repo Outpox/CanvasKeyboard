@@ -37,5 +37,8 @@ Check the doc inside the files for more explanations. I'll write an online docum
 * Some fix/improvements for other browsers (using Chrome)
 * Keyboard maker
 
-Preview:  
+## Test
+You can test an online version of the keyboard [here](http://62.210.236.193/csgobindsgenerator)
+
+## Preview
 ![Default keyboard](http://i.imgur.com/XsGywSn.png)
