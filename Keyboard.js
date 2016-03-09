@@ -68,6 +68,12 @@ function Keyboard(canvas, options, debug, lines) {
     this.selectedKey = {};
 
     this.canvas.style.backgroundColor = this.backgroundColor;
+
+    if (this.debug) {
+        this.defaultCursor = "crosshair";
+        this.disabledCursor = "crosshair";
+        this.hoverCursor = "crosshair";
+    }
 }
 /**
  * The options object accept the following properties:
@@ -188,10 +194,13 @@ Keyboard.prototype.init = function () {
             for (var l = 0; l <= layout.rows[i].keys.length; l++) {
                 var key = layout.rows[i].keys[l];
                 if (l === layout.rows[i].keys.length) {
-                    totalWidth += line.spaceX;
+                    //totalWidth += line.spaceX;
                 }
                 else {
-                    if (key.data !== undefined) {
+                    if (l === 0) {
+                        totalWidth += thisKeyboard.keyWidth;
+                    }
+                    else if (key.data !== undefined) {
                         totalWidth += thisKeyboard.keyWidth * (key.data.widthFactor || 1) + line.spaceX;
                     }
                     else {
@@ -246,6 +255,17 @@ Keyboard.prototype.init = function () {
         });
         thisKeyboard.canvas.addEventListener("mousemove", function (e) {
             thisKeyboard.handleMouseHover(e);
+            if (thisKeyboard.debug) {
+                var ctx = thisKeyboard.context;
+                var mouseX = parseInt(e.clientX - thisKeyboard.offsetX + window.pageXOffset);
+                var mouseY = parseInt(e.clientY - thisKeyboard.offsetY + window.pageYOffset);
+                ctx.save();
+                ctx.beginPath();
+                ctx.textAlign = "center";
+                ctx.fillStyle = "25px calibri";
+                ctx.fillText(mouseX + "\n" + mouseY, mouseX + 10, mouseY - 10);
+                ctx.restore();
+            }
         });
     });
 };
