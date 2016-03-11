@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Do an Ajax Request with json mime type
  * @param filename

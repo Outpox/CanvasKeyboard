@@ -1,3 +1,5 @@
+"use strict";
+
 var idKeyCount = 0;
 
 /**
@@ -11,7 +13,7 @@ var idKeyCount = 0;
  * @param type
  * @param data
  * @constructor
- */
+*/
 class Key {
     constructor(line, startX, startY, lengthX, lengthY, content, type, data) {
         this.id = idKeyCount++;
